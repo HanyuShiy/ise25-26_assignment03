@@ -68,3 +68,18 @@ Update title and description:
 ```shell
 curl --header "Content-Type: application/json" --request PUT --data '{"id":4,"name":"New coffee","description":"Great croissants","type":"CAFE","campus":"ALTSTADT","street":"Hauptstraße","houseNumber":"95","postalCode":69117,"city":"Heidelberg"}' http://localhost:8080/api/pos/4 # set correct POS id here and in the body
 ```
+
+## Used Command for Aufgabe3.2(c)
+1. Started the application:
+    - `docker run -d -e POSTGRES_USER=postgres -e POSTGRES_PASSWORD=postgres -p 5432:5432 postgres:17-alpine`
+    - `cd application`
+    - `mvn spring-boot:run -Dspring-boot.run.profiles=dev`
+1. Created a new POS:
+    - `curl --header "Content-Type: application/json" --request POST --data '{"name":"New Café","description":"Description","type":"CAFE","campus":"ALTSTADT","street":"Hauptstraße","houseNumber":"100","postalCode":69117,"city":"Heidelberg"}' http://localhost:8080/api/pos`
+1. Updated info of the POS:
+    - `curl --header "Content-Type: application/json" --request PUT --data '{"id":5,"name":"Bäckerei Kohlmann","description":"added for Aufgabe3.2(c)","type":"BAKERY","campus":"INF","street":"INF","houseNumber":"370","postalCode":69120,"city":"Heidelberg"}' http://localhost:8080/api/pos/5`
+1. Get POS to check the info:
+    - `curl http://localhost:8080/api/pos` (get all POS)
+    - `curl http://localhost:8080/api/pos/5` (get the new POS by ID)
+
+
